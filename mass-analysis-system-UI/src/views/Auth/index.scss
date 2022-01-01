@@ -1,0 +1,48 @@
+.loginPageContainer {
+    position: relative;
+    max-height: 36rem;
+    overflow: hidden;
+    user-select: none;
+    .backgroundImg {
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .administratorInfo {
+        position: absolute;
+        height: 90%;
+        top: 50%;
+        right: 10%;
+        transform: translateY(-50%);
+        .title {
+            .title_pic {
+                position: absolute;
+                width: 20%;
+                top: 2rem;
+                left: 2rem;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .title_name {
+                padding: 1.25rem 0;
+                font-size: 1.8rem;
+                margin-left: 10rem;
+                color: #fff;
+            }
+        }
+        .logoinForm {
+            width: 31.25rem;
+            .inputDiv {
+                margin: 2.5rem 0;
+            }
+            .wechat {
+                width: 22rem;
+                margin-left: 5rem;
+                margin-top: 1.25rem;
+            }
+        }
+    }
+}
