@@ -42,44 +42,72 @@
                 <a-tabs class="tabs">
                     <a-tab-pane key="1" tab="登录">
                         <div class="inputDiv">
-                            <a-input size="large" placeholder="请输入用户名"
+                            <a-input
+                                v-model:value="loginForm.account"
+                                size="large"
+                                placeholder="请输入用户名"
+                                allow-clear
                                 ><template #prefix>
                                     <user-outlined type="user" /></template
                             ></a-input>
                         </div>
                         <div class="inputDiv">
-                            <a-input size="large" placeholder="请输入密码"
+                            <a-input
+                                v-model:value="loginForm.password"
+                                size="large"
+                                placeholder="请输入密码"
+                                allow-clear
                                 ><template #prefix>
                                     <lock-outlined type="lock" /></template
                             ></a-input>
                         </div>
                         <div class="inputDiv">
-                            <a-button size="large" type="primary" block
+                            <a-button
+                                @click="login"
+                                size="large"
+                                type="primary"
+                                block
                                 >登录</a-button
                             >
                         </div>
                     </a-tab-pane>
                     <a-tab-pane key="2" tab="注册" force-render>
                         <div class="inputDiv">
-                            <a-input size="large" placeholder="请输入用户名"
+                            <a-input
+                                v-model:value="regForm.account"
+                                size="large"
+                                placeholder="请输入用户名"
+                                allow-clear
                                 ><template #prefix>
                                     <user-outlined type="user" /></template
                             ></a-input>
                         </div>
                         <div class="inputDiv">
-                            <a-input size="large" placeholder="请输入密码"
+                            <a-input
+                                v-model:value="regForm.password"
+                                size="large"
+                                placeholder="请输入密码"
+                                allow-clear
                                 ><template #prefix>
                                     <lock-outlined type="lock" /></template
                             ></a-input>
                         </div>
                         <div class="inputDiv">
-                            <a-input size="large" placeholder="请输入邀请码"
+                            <a-input
+                                v-model:value="regForm.inviteCode"
+                                size="large"
+                                placeholder="请输入邀请码"
+                                allow-clear
                                 ><template #prefix>
                                     <mail-outlined type="mail" /></template
                             ></a-input>
                         </div>
                         <div class="inputDiv">
-                            <a-button size="large" type="primary" block
+                            <a-button
+                                @click="register"
+                                size="large"
+                                type="primary"
+                                block
                                 >注册</a-button
                             >
                         </div>
