@@ -7,6 +7,8 @@ const mongoose = require('mongoose')
 require('./Schemas/User')
 // 导入邀请码的Schema进行注册
 require('./Schemas/InviteCode')
+// 导入船舶事故的Schemal进行注册
+require('./Schemas/Incident')
 
 const connect = () => {
     // 连接数据库时进行异步处理

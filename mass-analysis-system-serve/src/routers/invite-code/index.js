@@ -8,17 +8,22 @@ const router = new Router({
     prefix: '/invite',
 })
 
-router.get('/add', async ctx => {
-    const inviteInfo = new InviteCode({
-        inviteCode: uuidv4(),
-        user: '',
-    })
+router.post('/add', async ctx => {
+    const { count = 1 } = ctx.request.body
+    const arr = []
 
-    const saved = await inviteInfo.save()
+    for (let i = 0; i < count; i++) {
+        arr.push({
+            inviteCode: uuidv4(),
+            user: '',
+        })
+    }
+
+    const res = await InviteCode.insertMany(arr)
 
     ctx.body = {
         code: 200,
-        data: saved,
+        data: res,
         msg: '创建成功',
     }
 })

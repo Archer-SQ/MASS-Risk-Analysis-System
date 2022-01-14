@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons-vue";
-import { admin } from "../../service";
+import { admin } from "@/service";
 import { message } from "ant-design-vue";
 
 export default {

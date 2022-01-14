@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { getMate } = require('../helpers')
+const { getMeta } = require('../helpers')
 
 const InviteCodeSchema = new mongoose.Schema({
     // 邀请码
@@ -8,7 +8,7 @@ const InviteCodeSchema = new mongoose.Schema({
     // 哪个用户使用了邀请码
     user: String,
     // 元信息
-    meta: getMate(),
+    meta: getMeta(),
 })
 
 mongoose.model('InviteCode', InviteCodeSchema)

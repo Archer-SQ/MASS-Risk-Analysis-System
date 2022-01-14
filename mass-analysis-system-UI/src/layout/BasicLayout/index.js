@@ -4,6 +4,7 @@ import {
   UploadOutlined,
   EditOutlined,
 } from "@ant-design/icons-vue";
+import { useRouter } from "vue-router";
 import { defineComponent, ref } from "vue";
 export default defineComponent({
   components: {
@@ -14,18 +15,13 @@ export default defineComponent({
   },
 
   setup() {
-    const onCollapse = (collapsed, type) => {
-      console.log(collapsed, type);
+    const router = useRouter();
+    const to = (url) => {
+      router.push(url);
     };
-
-    const onBreakpoint = (broken) => {
-      console.log(broken);
-    };
-
     return {
       selectedKeys: ref(["1"]),
-      onCollapse,
-      onBreakpoint,
+      to,
     };
   },
 });

@@ -1,12 +1,6 @@
 <template>
     <a-layout>
-        <a-layout-sider
-            class="leftLayout"
-            breakpoint="lg"
-            collapsed-width="0"
-            @collapse="onCollapse"
-            @breakpoint="onBreakpoint"
-        >
+        <a-layout-sider class="leftLayout" breakpoint="lg" collapsed-width="0">
             <div class="leftLayout_header">
                 <h1>MASS人为风险分析系统</h1>
             </div>
@@ -15,21 +9,21 @@
                 mode="inline"
                 v-model:selectedKeys="selectedKeys"
             >
-                <a-menu-item key="1">
+                <a-menu-item key="1" @click="to('/')">
+                    <user-outlined />
+                    <span class="nav-text">首页</span>
+                </a-menu-item>
+                <a-menu-item key="2" @click="to('/incidents')">
                     <edit-outlined />
                     <span class="nav-text">船舶事故录入</span>
                 </a-menu-item>
-                <a-menu-item key="2">
+                <a-menu-item key="3" @click="to('/')">
                     <video-camera-outlined />
-                    <span class="nav-text">nav 2</span>
+                    <span class="nav-text">人为因素管理</span>
                 </a-menu-item>
-                <a-menu-item key="3">
+                <a-menu-item key="4" @click="to('/')">
                     <upload-outlined />
-                    <span class="nav-text">nav 3</span>
-                </a-menu-item>
-                <a-menu-item key="4">
-                    <user-outlined />
-                    <span class="nav-text">nav 4</span>
+                    <span class="nav-text">邀请码管理</span>
                 </a-menu-item>
             </a-menu>
         </a-layout-sider>
@@ -41,7 +35,7 @@
                         alt="logo"
                     />
                     <div class="welcome">
-                        你好，<span>XX</span>
+                        欢 迎 您！
                         <a-button class="logout" type="dashed" size="small">
                             退出
                         </a-button>
@@ -49,18 +43,12 @@
                 </div>
             </a-layout-header>
             <a-layout-content :style="{ margin: '24px 16px 0' }">
-                <div
-                    :style="{
-                        padding: '24px',
-                        background: '#fff',
-                        minHeight: '360px',
-                    }"
-                >
-                    <router-view />
-                </div>
+                <router-view />
             </a-layout-content>
-            <a-layout-footer style="text-align: center">
-                MASS Analysis System Created by KETIZU218
+            <a-layout-footer
+                style="text-align: center; word-spacing: 6px; padding: 0 50px"
+            >
+                System Created by KETIZU218
             </a-layout-footer>
         </a-layout>
     </a-layout>

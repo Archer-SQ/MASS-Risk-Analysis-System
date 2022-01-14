@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { getMate } = require('../helpers')
+const { getMeta } = require('../helpers')
 
 // 第一步：
 // 给哪个数据库的
@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     account: String,
     password: String,
     // 注册元信息
-    meta: getMate(),
+    meta: getMeta(),
 })
 
 // 根据Schema生成的一套方法，这套方法用来操作MongDB下的集合和集合下的文档

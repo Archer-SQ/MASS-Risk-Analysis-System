@@ -1,5 +1,5 @@
 // 注册元信息
-const getMate = () => {
+const getMeta = () => {
     return {
         // 创建的时间戳
         createdAt: {
@@ -14,4 +14,4 @@ const getMate = () => {
     }
 }
 
-module.exports = { getMate }
+module.exports = { getMeta }

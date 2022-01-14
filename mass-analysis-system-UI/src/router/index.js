@@ -13,10 +13,10 @@ const routes = [
     // 配置子路由来匹配basic layout中不同的面板
     children: [
       {
-        path: "accidents",
-        name: "Accidents",
+        path: "/incidents",
+        name: "Incidents",
         component: () =>
-          import(/* webpackChunkName:"Accident" */ "../views/AccidentReport/index.vue"),
+          import(/* webpackChunkName:"Accident" */ "../views/IncidentList/index.vue"),
       },
     ],
   },

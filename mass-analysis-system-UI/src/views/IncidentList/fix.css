@@ -1,0 +1,26 @@
+.ant-layout-content > div {
+    padding: 0 !important;
+}
+.ant-card-body {
+    padding: 0;
+}
+/* 修改搜索框的样式 */
+.eventList .eventSearch {
+    margin-right: 2rem !important;
+    margin-left: 0 !important;
+    width: 48vh;
+}
+/* 修改表格的高度度 */
+.ant-table-body {
+    max-height: 48vh !important;
+}
+/* 修改表头的字体 */
+.ant-table-header-column {
+    font-weight: 600;
+}
+/* 修改表单条数总计的样式 */
+.ant-pagination-total-text {
+    font-weight: bold;
+    margin-right: 20px;
+    letter-spacing: 6px;
+}
