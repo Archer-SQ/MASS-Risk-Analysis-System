@@ -6,6 +6,7 @@ import {
 import { inviteCode } from "../../service";
 import { message } from "ant-design-vue";
 import { isUsed } from "../../helpers/utils";
+import useClipboard from "vue-clipboard3";
 
 export default defineComponent({
   setup() {
@@ -25,15 +26,25 @@ export default defineComponent({
         title: "邀请码",
         dataIndex: "inviteCode",
         key: "inviteCode",
+        width: 10,
         align: "center",
-        width: 30,
+        slots: {
+          customRender: "inviteCode",
+        },
+      },
+      {
+        width: 1,
+        align: "center",
+        slots: {
+          customRender: "copy",
+        },
       },
       {
         title: "是否使用",
         dataIndex: "user",
         key: "user",
+        width: 10,
         align: "center",
-        width: 20,
         slots: {
           customRender: "used",
         },
@@ -41,8 +52,8 @@ export default defineComponent({
       {
         title: "操作",
         key: "operation",
+        width: 5,
         align: "center",
-        width: 10,
         slots: {
           customRender: "deleteInviteCode",
         },
@@ -84,6 +95,17 @@ export default defineComponent({
       }
     };
 
+    // 复制邀请码处理
+    const { toClipboard } = useClipboard();
+    const handleCopy = async (text) => {
+      try {
+        await toClipboard(text);
+        message.success("复制成功!");
+      } catch (e) {
+        message.error("不支持复制");
+      }
+    };
+
     // 在挂载阶段获取事故列表
     onMounted(async () => {
       getInviteCodeList();
@@ -98,6 +120,7 @@ export default defineComponent({
       createInviteCode,
       isUsed,
       deleteInviteCode,
+      handleCopy,
     };
   },
 });

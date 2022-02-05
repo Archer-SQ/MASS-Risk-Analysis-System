@@ -27,11 +27,28 @@
                 :scroll="{ y: 300 }"
                 :pagination="pagination"
             >
+                <template #inviteCode="data">
+                    <span>{{ data.record.inviteCode }}</span>
+                </template>
+                <template #copy="data">
+                    <a-button
+                        :disabled="data.record.user ? true : false"
+                        type="dashed"
+                        size="small"
+                        @click="handleCopy(data.record.inviteCode)"
+                        >复制</a-button
+                    >
+                </template>
                 <template #used="data">
                     {{ isUsed(data.record.user) }}
                 </template>
                 <template #deleteInviteCode="data"
-                    ><a-button type="primary" danger @click="deleteInviteCode(data.record._id)">删除</a-button>
+                    ><a-button
+                        type="primary"
+                        danger
+                        @click="deleteInviteCode(data.record._id)"
+                        >删除</a-button
+                    >
                 </template>
             </a-table>
         </a-card>

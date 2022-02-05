@@ -57,4 +57,13 @@ const router = createRouter({
   routes,
 });
 
+// 挂载路由守卫，防止没有密码直接输入路径进入主页
+router.beforeEach((to, from, next) => {
+  if (to.path === "/admin") return next();
+  const tokenStr =
+    window.sessionStorage.getItem("token");
+  if (!tokenStr) return next("/admin");
+  next();
+});
+
 export default router;

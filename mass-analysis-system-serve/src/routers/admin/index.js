@@ -15,7 +15,7 @@ const router = new Router({
 
 // 当请求路径为/admin/register,请求方法为get时会执行下面这个函数
 router.post('/register', async ctx => {
-    const { account, password, inviteCode } = getBody(ctx)
+    const { account, password, inviteCode, role = '' } = getBody(ctx)
 
     // 后端验证
     if (account === '' || password === '' || inviteCode === '') {
@@ -55,6 +55,7 @@ router.post('/register', async ctx => {
     const user = new User({
         account,
         password,
+        role,
     })
     // 保存对数据的添加,并接收保存成功后的一些信息
     const res = await user.save()
@@ -98,6 +99,7 @@ router.post('/login', async ctx => {
     // 找到后将需要的用户信息返回给前端,并判断密码是否正确
     const userInfo = {
         account: one.account,
+        role: one.role,
         _id: one._id,
     }
 

@@ -1,7 +1,12 @@
 import { reactive } from "vue";
-import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons-vue";
+import {
+  UserOutlined,
+  LockOutlined,
+  MailOutlined,
+} from "@ant-design/icons-vue";
 import { admin } from "@/service";
 import { message } from "ant-design-vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -10,6 +15,7 @@ export default {
     MailOutlined,
   },
   setup() {
+    const router = useRouter();
     // 注册用的表单数据(通过reactive创建响应式的数据)
     const regForm = reactive({
       account: "",
@@ -31,9 +37,14 @@ export default {
         message.info("请输入邀请码", 1);
         return;
       }
-      const { data } = await admin.register(regForm.account, regForm.password, regForm.inviteCode);
+      const { data } = await admin.register(
+        regForm.account,
+        regForm.password,
+        regForm.inviteCode
+      );
       if (data.code) {
         message.success(data.msg);
+        location.reload();
         return;
       }
       message.error(data.msg);
@@ -55,9 +66,27 @@ export default {
         message.info("请输入密码", 1);
         return;
       }
-      const { data } = await admin.login(loginForm.account, loginForm.password);
+      const { data } = await admin.login(
+        loginForm.account,
+        loginForm.password
+      );
       if (data.code) {
-        message.success(data.msg);
+        message.success(
+          "欢迎您：" + data.data.userInfo.account
+        );
+        window.sessionStorage.setItem(
+          "token",
+          data.data.token
+        );
+        window.sessionStorage.setItem(
+          "account",
+          data.data.userInfo.account
+        );
+        window.sessionStorage.setItem(
+          "role",
+          data.data.userInfo.role
+        );
+        router.replace("/");
         return;
       }
       message.error(data.msg);

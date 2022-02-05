@@ -21,3 +21,13 @@ export const isUsed = (str) => {
 export const toPercent = (str) => {
   return str + "%";
 };
+
+export const sayHello = () => {
+  const date = new Date();
+  const h = date.getHours();
+  return h >= 0 && h < 12
+    ? "早上好!"
+    : h >= 12 && h < 18
+    ? "下午好"
+    : "晚上好";
+};

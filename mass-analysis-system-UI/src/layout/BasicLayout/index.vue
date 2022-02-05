@@ -21,7 +21,11 @@
                     <pie-chart-outlined />
                     <span class="nav-text">人为因素权重</span>
                 </a-menu-item>
-                <a-menu-item key="4" @click="to('/inviteCode')">
+                <a-menu-item
+                    v-if="role === 'admin'"
+                    key="4"
+                    @click="to('/inviteCode')"
+                >
                     <number-outlined />
                     <span class="nav-text">邀请码管理</span>
                 </a-menu-item>
@@ -35,8 +39,13 @@
                         alt="logo"
                     />
                     <div class="welcome">
-                        欢 迎 您 ！
-                        <a-button class="logout" type="dashed" size="small">
+                        {{ accountName }}&nbsp;&nbsp;&nbsp;{{ sayHello() }}
+                        <a-button
+                            class="logout"
+                            type="dashed"
+                            size="small"
+                            @click="showConfirm"
+                        >
                             退出
                         </a-button>
                     </div>

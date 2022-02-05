@@ -47,19 +47,20 @@
                                 size="large"
                                 placeholder="请输入用户名"
                                 allow-clear
+                                @keyup.enter="login"
                                 ><template #prefix>
                                     <user-outlined type="user" /></template
                             ></a-input>
                         </div>
                         <div class="inputDiv">
-                            <a-input
+                            <a-input-password
                                 v-model:value="loginForm.password"
                                 size="large"
                                 placeholder="请输入密码"
-                                allow-clear
+                                @keyup.enter="login"
                                 ><template #prefix>
                                     <lock-outlined type="lock" /></template
-                            ></a-input>
+                            ></a-input-password>
                         </div>
                         <div class="inputDiv">
                             <a-button
@@ -78,19 +79,20 @@
                                 size="large"
                                 placeholder="请输入用户名"
                                 allow-clear
+                                @keyup.enter="register"
                                 ><template #prefix>
                                     <user-outlined type="user" /></template
                             ></a-input>
                         </div>
                         <div class="inputDiv">
-                            <a-input
+                            <a-input-password
                                 v-model:value="regForm.password"
                                 size="large"
                                 placeholder="请输入密码"
-                                allow-clear
+                                @keyup.enter="register"
                                 ><template #prefix>
                                     <lock-outlined type="lock" /></template
-                            ></a-input>
+                            ></a-input-password>
                         </div>
                         <div class="inputDiv">
                             <a-input
@@ -98,6 +100,7 @@
                                 size="large"
                                 placeholder="请输入邀请码"
                                 allow-clear
+                                @keyup.enter="register"
                                 ><template #prefix>
                                     <mail-outlined type="mail" /></template
                             ></a-input>
