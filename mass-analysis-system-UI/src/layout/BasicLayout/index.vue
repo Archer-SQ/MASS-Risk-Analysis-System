@@ -10,19 +10,19 @@
                 v-model:selectedKeys="selectedKeys"
             >
                 <a-menu-item key="1" @click="to('/')">
-                    <user-outlined />
+                    <home-outlined />
                     <span class="nav-text">首页</span>
                 </a-menu-item>
                 <a-menu-item key="2" @click="to('/incidents')">
-                    <edit-outlined />
+                    <form-outlined />
                     <span class="nav-text">船舶事故录入</span>
                 </a-menu-item>
-                <a-menu-item key="3" @click="to('/')">
-                    <video-camera-outlined />
-                    <span class="nav-text">人为因素管理</span>
+                <a-menu-item key="3" @click="to('/humanFactor')">
+                    <pie-chart-outlined />
+                    <span class="nav-text">人为因素权重</span>
                 </a-menu-item>
-                <a-menu-item key="4" @click="to('/')">
-                    <upload-outlined />
+                <a-menu-item key="4" @click="to('/inviteCode')">
+                    <number-outlined />
                     <span class="nav-text">邀请码管理</span>
                 </a-menu-item>
             </a-menu>
@@ -35,7 +35,7 @@
                         alt="logo"
                     />
                     <div class="welcome">
-                        欢 迎 您！
+                        欢 迎 您 ！
                         <a-button class="logout" type="dashed" size="small">
                             退出
                         </a-button>

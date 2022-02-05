@@ -9,7 +9,7 @@ const router = new Router({
 })
 
 router.post('/add', async ctx => {
-    const { count = 1 } = ctx.request.body
+    const { count } = ctx.request.body
     const arr = []
 
     for (let i = 0; i < count; i++) {
@@ -25,6 +25,28 @@ router.post('/add', async ctx => {
         code: 200,
         data: res,
         msg: '创建成功',
+    }
+})
+
+router.get('/list', async ctx => {
+    const list = await InviteCode.find().exec()
+
+    ctx.body = {
+        data: list,
+        msg: '获取列表成功',
+        code: 200,
+    }
+})
+
+router.delete('/:id', async ctx => {
+    const { id } = ctx.params
+    const res = await InviteCode.deleteOne({
+        _id: id,
+    })
+    ctx.body = {
+        data: res,
+        msg: '删除成功',
+        code: 200,
     }
 })
 

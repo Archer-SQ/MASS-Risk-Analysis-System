@@ -9,6 +9,8 @@ require('./Schemas/User')
 require('./Schemas/InviteCode')
 // 导入船舶事故的Schemal进行注册
 require('./Schemas/Incident')
+// 导入人为因素的Schemal进行注册
+require('./Schemas/HumanFactor')
 
 const connect = () => {
     // 连接数据库时进行异步处理

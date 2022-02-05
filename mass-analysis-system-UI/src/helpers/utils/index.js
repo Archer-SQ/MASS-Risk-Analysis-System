@@ -13,3 +13,11 @@ export const formateTimestamp = (timeStamp) => {
 
   return `${YYYY}年${MM}月${DD}日`;
 };
+
+export const isUsed = (str) => {
+  return str ? "已使用" : "未使用";
+};
+
+export const toPercent = (str) => {
+  return str + "%";
+};

@@ -15,12 +15,6 @@
     max-height: 48vh !important;
 }
 /* 修改表头的字体 */
-.eventList .ant-table-header-column {
+.inviteCodeList .ant-table-header-column {
     font-weight: 600;
-}
-/* 修改表单条数总计的样式 */
-.ant-pagination-total-text {
-    font-weight: bold;
-    margin-right: 20px;
-    letter-spacing: 6px;
 }

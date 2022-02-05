@@ -10,6 +10,7 @@ import { message } from "ant-design-vue";
 export default defineComponent({
   props: {
     show: Boolean,
+    parentGetList: Function,
   },
   setup(props, context) {
     // 创建响应式的表单内容
@@ -275,6 +276,7 @@ export default defineComponent({
         if (data.code !== 0) {
           message.success(data.msg);
           handleClose();
+          props.parentGetList();
           formRef.value.resetFields();
         }
       });

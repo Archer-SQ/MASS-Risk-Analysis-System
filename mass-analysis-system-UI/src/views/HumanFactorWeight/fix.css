@@ -1,0 +1,23 @@
+/* 表格到四周的距离 */
+.humanFactorList .ant-card-body {
+    padding: 0;
+}
+
+/* tab栏字体的weight */
+.humanFactorList .ant-tabs-tab {
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+/* 标题的左右padding */
+.humanFactorList .ant-card-head {
+    padding: 0;
+}
+
+/* 标题文字的样式 */
+.humanFactorList .ant-card-head-title {
+    padding-top: 0;
+    padding-left: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 3rem;
+}

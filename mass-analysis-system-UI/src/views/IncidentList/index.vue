@@ -24,12 +24,23 @@
                 <template #time="data">
                     {{ formateTimestamp(data.record.time) }}
                 </template>
-                <template #factors="data">
-                    {{ data.record.factors.join("、") }}
+                <template #factors="{ record }">
+                    <span>
+                        <a-tag
+                            v-for="factor in record.factors"
+                            :key="factor"
+                            color="volcano"
+                        >
+                            {{ factor }}
+                        </a-tag>
+                    </span>
                 </template>
             </a-table>
         </a-card>
-        <add-incident v-model:show="showAddIncidentDialog" />
+        <add-incident
+            v-model:show="showAddIncidentDialog"
+            :parentGetList="getList"
+        />
     </div>
 </template>
 

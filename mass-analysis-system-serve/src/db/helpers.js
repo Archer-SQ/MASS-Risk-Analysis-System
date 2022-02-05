@@ -14,4 +14,17 @@ const getMeta = () => {
     }
 }
 
-module.exports = { getMeta }
+// 保存之前修改meta的值
+const preSave = function (next) {
+    // 判断是否是新数据
+    if (this.isNew) {
+        const ts = Date.now()
+        this['meta'].createdAt = ts
+        this['meta'].updatedAt = ts
+    } else {
+        this['meta'].updatedAt = Date.now()
+    }
+    next()
+}
+
+module.exports = { getMeta, preSave }

@@ -1,6 +1,7 @@
 const admin = require('./admin/index')
 const inviteCode = require('./invite-code/index')
-const incident = require('./Incident')
+const incident = require('./incident/index')
+const humanFactor = require('./human-factor/index')
 
 module.exports = app => {
     // 通过app.use注册中间件
@@ -9,4 +10,5 @@ module.exports = app => {
     app.use(admin.routes())
     app.use(inviteCode.routes())
     app.use(incident.routes())
+    app.use(humanFactor.routes())
 }

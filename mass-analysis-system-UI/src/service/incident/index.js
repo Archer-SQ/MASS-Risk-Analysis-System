@@ -5,5 +5,7 @@ export const addIncident = (form) => {
 };
 // 获取事故列表
 export const getIncidentList = (data) => {
-  return axios.get("incident/list", { params: data });
+  return axios.get("incident/list", {
+    params: data,
+  });
 };

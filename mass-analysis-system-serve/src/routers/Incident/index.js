@@ -31,7 +31,6 @@ router.get('/list', async ctx => {
     if (keyword) {
         // 模糊查询
         query.name = new RegExp(`${keyword}`)
-        console.log(query)
     }
     const list = await Incident.find(query).exec()
     const total = await Incident.countDocuments()

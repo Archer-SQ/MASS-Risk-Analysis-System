@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { getMeta } = require('../helpers')
+const { getMeta, preSave } = require('../helpers')
 
 const IncidentSchema = new mongoose.Schema({
     // 事故名称
@@ -13,5 +13,7 @@ const IncidentSchema = new mongoose.Schema({
     // 元信息
     meta: getMeta(),
 })
+
+IncidentSchema.pre('save', preSave)
 
 mongoose.model('Incident', IncidentSchema)
