@@ -59,10 +59,15 @@ const router = createRouter({
 
 // 挂载路由守卫，防止没有密码直接输入路径进入主页
 router.beforeEach((to, from, next) => {
-  if (to.path === "/admin") return next();
   const tokenStr =
     window.sessionStorage.getItem("token");
+  const userRole =
+    window.sessionStorage.getItem("role");
+  if (to.path === "/admin") return next();
   if (!tokenStr) return next("/admin");
+  if (to.path === "/inviteCode") {
+    return userRole ? next() : next(from.path);
+  }
   next();
 });
 
