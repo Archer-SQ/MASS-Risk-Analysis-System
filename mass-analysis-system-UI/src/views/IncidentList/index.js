@@ -6,11 +6,21 @@ import {
 import AddIncident from "./AddIncident/index.vue";
 import { incident } from "../../service";
 import { message } from "ant-design-vue";
-import { formateTimestamp } from "../../helpers/utils";
+import {
+  FilePdfOutlined,
+  FileWordOutlined,
+} from "@ant-design/icons-vue";
+import {
+  formateTimestamp,
+  adjustPath,
+  fixArray,
+} from "../../helpers/utils";
 
 export default defineComponent({
   components: {
     AddIncident,
+    FilePdfOutlined,
+    FileWordOutlined,
   },
   setup() {
     // 设置card的头部样式
@@ -27,6 +37,14 @@ export default defineComponent({
     const keyword = ref("");
     const columns = [
       {
+        title: "序号",
+        dataIndex: "serialNumber",
+        key: "serialNumber",
+        align: "center",
+        width: 4,
+        slots: { customRender: "serialNumber" },
+      },
+      {
         title: "事故名称",
         dataIndex: "name",
         key: "name",
@@ -38,7 +56,7 @@ export default defineComponent({
         dataIndex: "time",
         key: "time",
         align: "center",
-        width: 20,
+        width: 10,
         slots: {
           customRender: "time",
         },
@@ -48,7 +66,7 @@ export default defineComponent({
         dataIndex: "factors",
         key: "factors",
         align: "center",
-        width: 30,
+        width: 20,
         slots: {
           customRender: "factors",
         },
@@ -59,6 +77,16 @@ export default defineComponent({
         key: "place",
         align: "center",
         width: 10,
+      },
+      {
+        title: "事故报告",
+        dataIndex: "filePathName",
+        key: "filePathName",
+        align: "center",
+        width: 10,
+        slots: {
+          customRender: "filePathName",
+        },
       },
     ];
     // 配置分页选项
@@ -79,7 +107,7 @@ export default defineComponent({
       const { list, total } = data.data;
       if (data.code !== 0) {
         message.success(data.msg);
-        eventList.value = list;
+        eventList.value = fixArray(list);
         totalEvents.value = total;
       }
     };
@@ -100,6 +128,7 @@ export default defineComponent({
       headStyle,
       showAddIncidentDialog,
       formateTimestamp,
+      adjustPath,
       keyword,
       handleInput,
       getList,

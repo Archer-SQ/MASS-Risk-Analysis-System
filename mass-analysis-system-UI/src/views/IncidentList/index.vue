@@ -21,6 +21,16 @@
                 :scroll="{ y: 300 }"
                 :pagination="pagination"
             >
+                <template #serialNumber="data">
+                    <a-badge
+                        :count="data.record.serialNumber"
+                        :number-style="{
+                            backgroundColor: '#fff',
+                            color: '#999',
+                            boxShadow: '0 0 0 1px #d9d9d9 inset',
+                        }"
+                    />
+                </template>
                 <template #time="data">
                     {{ formateTimestamp(data.record.time) }}
                 </template>
@@ -34,6 +44,30 @@
                             {{ factor }}
                         </a-tag>
                     </span>
+                </template>
+                <template #filePathName="{ record }">
+                    <a-button
+                        type="primary"
+                        :danger="
+                            adjustPath(record.filePathName).fileSuffix === 'pdf'
+                                ? true
+                                : false
+                        "
+                        shape="round"
+                        size="small"
+                        :href="adjustPath(record.filePathName).path"
+                        :download="record.name"
+                        target="_blank"
+                    >
+                        <file-pdf-outlined
+                            v-if="
+                                adjustPath(record.filePathName).fileSuffix ===
+                                'pdf'
+                            "
+                        />
+                        <file-word-outlined v-else />
+                        预览
+                    </a-button>
                 </template>
             </a-table>
         </a-card>

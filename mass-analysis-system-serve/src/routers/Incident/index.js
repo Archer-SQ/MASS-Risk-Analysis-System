@@ -1,20 +1,29 @@
 const Router = require('@koa/router')
 const mongoose = require('mongoose')
 const { getBody } = require('../../helpers/utils')
+const { saveFileToDisk } = require('../../helpers/upload/index')
 
 const Incident = mongoose.model('Incident')
 
 const router = new Router({
     prefix: '/incident',
 })
-
+router.post('/upload', ctx => {
+    const res = saveFileToDisk(ctx)
+    ctx.body = {
+        data: res,
+        msg: '',
+        code: '200',
+    }
+})
 router.post('/add', async ctx => {
-    const { name, time, place, factors } = getBody(ctx)
+    const { name, time, place, factors, filePathName } = getBody(ctx)
     const incident = new Incident({
         name,
         time,
         place,
         factors,
+        filePathName,
     })
     const res = await incident.save()
     ctx.body = {

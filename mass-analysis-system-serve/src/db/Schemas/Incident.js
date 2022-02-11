@@ -10,6 +10,8 @@ const IncidentSchema = new mongoose.Schema({
     place: String,
     // 事故人为因素
     factors: Array,
+    // 文件路径
+    filePathName: String,
     // 元信息
     meta: getMeta(),
 })

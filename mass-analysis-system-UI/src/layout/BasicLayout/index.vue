@@ -9,7 +9,7 @@
                 mode="inline"
                 v-model:selectedKeys="selectedKeys"
             >
-                <a-menu-item key="1" @click="to('/')">
+                <a-menu-item key="1" @click="to('/home')">
                     <home-outlined />
                     <span class="nav-text">首页</span>
                 </a-menu-item>

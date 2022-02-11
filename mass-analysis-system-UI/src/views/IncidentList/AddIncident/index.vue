@@ -44,6 +44,24 @@
                         placeholder="请选择与事故有关的人为因素"
                     />
                 </a-form-item>
+                <a-form-item label="事故报告" name="filePathName">
+                    <a-upload
+                        :multiple="false"
+                        action="http://localhost:3000/incident/upload"
+                        @change="handleChange"
+                        v-model:file-list="fileList"
+                        accept=".doc,.docx,.pdf"
+                    >
+                        <a-button
+                            :disabled="
+                                addIncidentForm.filePathName ? true : false
+                            "
+                        >
+                            <upload-outlined></upload-outlined>
+                            点击上传事故报告
+                        </a-button>
+                    </a-upload>
+                </a-form-item>
             </a-form>
         </a-modal>
     </div>

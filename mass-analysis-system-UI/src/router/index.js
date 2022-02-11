@@ -21,6 +21,15 @@ const routes = [
       ),
     // 配置子路由来匹配basic layout中不同的面板
     children: [
+      // 首页
+      {
+        path: "home",
+        name: "Home",
+        component: () =>
+          import(
+            /* webpackChunkName:"Home" */ "../views/Home/index.vue"
+          ),
+      },
       // 船舶事故录入界面
       {
         path: "incidents",

@@ -6,7 +6,11 @@ import {
 import AddHumanFactor from "./AddHumanFactor/index.vue";
 import { humanFactor } from "@/service";
 import { message } from "ant-design-vue";
-import { toPercent } from "../../helpers/utils";
+import {
+  toPercent,
+  highlightSort,
+  fixArray,
+} from "../../helpers/utils";
 
 export default defineComponent({
   components: {
@@ -42,6 +46,14 @@ export default defineComponent({
       getList();
     };
     const columns = [
+      {
+        title: "序号",
+        dataIndex: "serialNumber",
+        key: "serialNumber",
+        align: "center",
+        width: 3,
+        slots: { customRender: "serialNumber" },
+      },
       {
         title: "人为因素名称",
         dataIndex: "humanFactorName",
@@ -99,9 +111,9 @@ export default defineComponent({
             align: "center",
             width: 5,
             slots: {
-                customRender:
-                  "weightRankingOfInboundAndOutbound",
-              },
+              customRender:
+                "weightRankingOfInboundAndOutbound",
+            },
           },
         ],
       },
@@ -125,9 +137,9 @@ export default defineComponent({
             align: "center",
             width: 5,
             slots: {
-                customRender:
-                  "weightRankingOfCoastal",
-              },
+              customRender:
+                "weightRankingOfCoastal",
+            },
           },
         ],
       },
@@ -151,8 +163,9 @@ export default defineComponent({
             align: "center",
             width: 5,
             slots: {
-                customRender: "generalWeightRanking",
-              },
+              customRender:
+                "generalWeightRanking",
+            },
           },
         ],
       },
@@ -169,7 +182,9 @@ export default defineComponent({
         });
       if (data.code !== 0) {
         message.success(data.msg);
-        humanFactorList.value = data.data;
+        humanFactorList.value = fixArray(
+          data.data
+        );
       }
     };
     onMounted(async () => {
@@ -187,6 +202,7 @@ export default defineComponent({
       humanFactorList,
       getList,
       toPercent,
+      highlightSort,
     };
   },
 });

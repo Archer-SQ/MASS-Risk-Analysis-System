@@ -129,12 +129,11 @@ export default defineComponent({
     };
     // 关闭新增对话框
     const handleClose = () => {
-      context.emit("update:show", false);
       formRef.value.resetFields();
+      context.emit("update:show", false);
     };
     // 提交添加人为因素的表单
     const submit = () => {
-      console.log(addHumanFactorForm);
       formRef.value.validate().then(async () => {
         const { data } =
           await humanFactor.addHumanFactor(
@@ -143,9 +142,9 @@ export default defineComponent({
         if (data.code !== 0) {
           message.success(data.msg);
           handleClose();
+          formRef.value.resetFields();
           // 使父组件重新获取表单
           props.parentGetList();
-          formRef.value.resetFields();
         }
       });
     };

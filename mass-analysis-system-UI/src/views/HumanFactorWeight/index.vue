@@ -25,6 +25,16 @@
                 size="small"
                 bordered
             >
+                <template #serialNumber="data">
+                    <a-badge
+                        :count="data.record.serialNumber"
+                        :number-style="{
+                            backgroundColor: '#fff',
+                            color: '#999',
+                            boxShadow: '0 0 0 1px #d9d9d9 inset',
+                        }"
+                    />
+                </template>
                 <template #weightOfBerthStage="{ record }">
                     {{ toPercent(record.weightOfBerthStage) }}
                 </template>
@@ -32,11 +42,7 @@
                     <span>
                         <a-tag
                             :color="
-                                record.weightRankingOfBerthStage === '1' ||
-                                record.weightRankingOfBerthStage === '2' ||
-                                record.weightRankingOfBerthStage === '3'
-                                    ? 'volcano'
-                                    : 'green'
+                                highlightSort(record.weightRankingOfBerthStage)
                             "
                         >
                             {{ record.weightRankingOfBerthStage }}
@@ -50,13 +56,9 @@
                     <span>
                         <a-tag
                             :color="
-                                record.weightRankingOfInboundAndOutbound ===
-                                    '1' ||
-                                record.weightRankingOfInboundAndOutbound ===
-                                    '2' ||
-                                record.weightRankingOfInboundAndOutbound === '3'
-                                    ? 'volcano'
-                                    : 'green'
+                                highlightSort(
+                                    record.weightRankingOfInboundAndOutbound
+                                )
                             "
                         >
                             {{ record.weightRankingOfInboundAndOutbound }}
@@ -70,11 +72,7 @@
                     <span>
                         <a-tag
                             :color="
-                                record.weightRankingOfCoastal === '1' ||
-                                record.weightRankingOfCoastal === '2' ||
-                                record.weightRankingOfCoastal === '3'
-                                    ? 'volcano'
-                                    : 'green'
+                                highlightSort(record.weightRankingOfCoastal)
                             "
                         >
                             {{ record.weightRankingOfCoastal }}
@@ -87,13 +85,7 @@
                 <template #generalWeightRanking="{ record }">
                     <span>
                         <a-tag
-                            :color="
-                                record.generalWeightRanking === '1' ||
-                                record.generalWeightRanking === '2' ||
-                                record.generalWeightRanking === '3'
-                                    ? 'volcano'
-                                    : 'green'
-                            "
+                            :color="highlightSort(record.generalWeightRanking)"
                         >
                             {{ record.generalWeightRanking }}
                         </a-tag>

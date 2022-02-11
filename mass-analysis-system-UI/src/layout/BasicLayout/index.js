@@ -24,7 +24,7 @@ export default defineComponent({
   // 刷新时页面自动回到首页
   created() {
     if (this.$router.path !== "/")
-      this.$router.replace("/");
+      this.$router.replace("/home");
   },
   setup() {
     const router = useRouter();
@@ -32,7 +32,6 @@ export default defineComponent({
       window.sessionStorage.getItem("account");
     const role =
       window.sessionStorage.getItem("role");
-    console.log(role);
     const showConfirm = () => {
       Modal.confirm({
         title: () => "是否要退出登录?",

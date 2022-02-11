@@ -6,11 +6,17 @@ import {
 import { incident } from "@/service";
 import { clone } from "@/helpers/utils";
 import { message } from "ant-design-vue";
+import { UploadOutlined } from "@ant-design/icons-vue";
+import constants from "../../../../constants";
+import { trimSpace } from "../../../helpers/utils";
 
 export default defineComponent({
   props: {
     show: Boolean,
     parentGetList: Function,
+  },
+  components: {
+    UploadOutlined,
   },
   setup(props, context) {
     // 创建响应式的表单内容
@@ -19,8 +25,9 @@ export default defineComponent({
       time: "",
       place: null,
       factors: [],
+      filePathName: "",
     });
-
+    const fileList = ref([]);
     // 配置发生地点选择框
     const treeDataPlace = [
       {
@@ -49,7 +56,7 @@ export default defineComponent({
         children: [
           {
             title: "提供航行安全信息",
-            value: "1",
+            value: "提供航行安全信息",
             key: "1",
           },
           {
@@ -261,6 +268,13 @@ export default defineComponent({
       context.emit("update:show", false);
       // 清空添加的表单
       formRef.value.resetFields();
+      // 清空添加的文件
+      fileList.value = [];
+    };
+
+    const handleChange = (info) => {
+      addIncidentForm.filePathName =
+        constants.DOWNLOAD_URL + info.file.name;
     };
 
     const submit = () => {
@@ -270,6 +284,9 @@ export default defineComponent({
         const form = clone(addIncidentForm);
         form.time =
           addIncidentForm.time.valueOf();
+        form.name = trimSpace(
+          addIncidentForm.name
+        );
         const { data } =
           await incident.addIncident(form);
 
@@ -278,6 +295,8 @@ export default defineComponent({
           handleClose();
           props.parentGetList();
           formRef.value.resetFields();
+          // 清空添加的文件
+          fileList.value = [];
         }
       });
     };
@@ -291,6 +310,8 @@ export default defineComponent({
       treeDataFactors,
       rules,
       formRef,
+      handleChange,
+      fileList,
     };
   },
 });
