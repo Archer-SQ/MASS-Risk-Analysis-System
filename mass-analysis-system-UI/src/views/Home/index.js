@@ -83,24 +83,36 @@ export default defineComponent({
       let arrData1 = barData[0].slice(0, 6);
       let arrData2 = barData[1].slice(0, 6);
       let arrData3 = barData[2].slice(0, 6);
+      let arrDataLen = arrData1.length;
+      let barDataItemLen = barData[0].length;
 
       setInterval(() => {
-        arrName = echartTool.getDynamicData(
-          xAxisNameArr,
-          arrName
-        );
-        arrData1 = echartTool.getDynamicData(
-          barData[0],
-          arrData1
-        );
-        arrData2 = echartTool.getDynamicData(
-          barData[1],
-          arrData2
-        );
-        arrData3 = echartTool.getDynamicData(
-          barData[2],
-          arrData3
-        );
+        arrDataLen + 1 === barDataItemLen
+          ? (arrDataLen = 0)
+          : (arrDataLen += 1);
+        arrName =
+          echartTool.getDynamicxAxisNameData(
+            xAxisNameArr,
+            arrName
+          );
+        arrData1 =
+          echartTool.getDynamicSeriesData(
+            barData[0],
+            arrData1,
+            arrDataLen
+          );
+        arrData2 =
+          echartTool.getDynamicSeriesData(
+            barData[1],
+            arrData2,
+            arrDataLen
+          );
+        arrData3 =
+          echartTool.getDynamicSeriesData(
+            barData[2],
+            arrData3,
+            arrDataLen
+          );
         barEchart.setOption({
           xAxis: [
             {

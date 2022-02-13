@@ -52,11 +52,7 @@
                         v-model:file-list="fileList"
                         accept=".doc,.docx,.pdf"
                     >
-                        <a-button
-                            :disabled="
-                                addIncidentForm.filePathName ? true : false
-                            "
-                        >
+                        <a-button :disabled="fileList.length === 0 ? false : true">
                             <upload-outlined></upload-outlined>
                             点击上传事故报告
                         </a-button>

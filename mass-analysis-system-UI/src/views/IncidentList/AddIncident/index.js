@@ -262,7 +262,6 @@ export default defineComponent({
         },
       ],
     };
-
     const handleClose = () => {
       // 通过context.emit来修改父组件的状态
       context.emit("update:show", false);

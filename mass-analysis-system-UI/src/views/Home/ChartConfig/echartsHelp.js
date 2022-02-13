@@ -40,15 +40,31 @@ const barTooltip = (arr) => {
   <li class="tooltipTotal">事故数量：${arr[2]}起</li></ul>`;
 };
 
-const getDynamicData = (xAxisNameArr, arr) => {
-  arr.shift();
+const getDynamicxAxisNameData = (
+  xAxisNameArr,
+  arr
+) => {
   const targetIndex = xAxisNameArr.indexOf(
     arr[arr.length - 1]
   );
+  arr.shift();
   targetIndex + 1 === xAxisNameArr.length
     ? arr.push(xAxisNameArr[0])
     : arr.push(xAxisNameArr[targetIndex + 1]);
   return arr;
 };
+const getDynamicSeriesData = (
+  seriesArr,
+  arr,
+  index
+) => {
+  arr.shift();
+  arr.push(seriesArr[index]);
+  return arr;
+};
 
-export default { barTooltip, getDynamicData };
+export default {
+  barTooltip,
+  getDynamicxAxisNameData,
+  getDynamicSeriesData,
+};

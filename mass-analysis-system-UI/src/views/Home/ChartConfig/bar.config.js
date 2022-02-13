@@ -3,7 +3,7 @@ const barConfig = (bardata) => {
     title: {
       text: "2015-2020年不同人为因素在各航行阶段造成事故统计",
       top: "bottom",
-      left: "32%",
+      left: "30%",
     },
     tooltip: {
       trigger: "axis",
@@ -19,8 +19,8 @@ const barConfig = (bardata) => {
       ],
     },
     grid: {
-      width: 1100,
-      height: 170,
+      width: 980,
+      height: 100,
       left: 50,
       bottom: 60,
     },
@@ -48,6 +48,9 @@ const barConfig = (bardata) => {
         axisTick: { show: true },
         nameTextStyle: {
           padding: [6, 0, 0, 0],
+        },
+        axisLabel: {
+          fontSize: 10,
         },
         data: [
           "提供航行安全信息",
