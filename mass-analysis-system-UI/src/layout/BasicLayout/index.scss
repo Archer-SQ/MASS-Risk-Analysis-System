@@ -1,0 +1,23 @@
+.leftLayout {
+    .leftLayout_header {
+        padding: 18px 0;
+        h1 {
+            margin: 0;
+            font-size: 1rem;
+            text-align: center;
+            color: #fff;
+        }
+    }
+}
+.rightLayout {
+    .rightLayout_header {
+        display: flex;
+        justify-content: space-between;
+        img {
+            width: 200px;
+        }
+        .welcome {
+            padding: 0 1.25rem;
+        }
+    }
+}

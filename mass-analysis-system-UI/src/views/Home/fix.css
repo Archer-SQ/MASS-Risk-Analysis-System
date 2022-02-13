@@ -1,0 +1,22 @@
+.tooltipLi {
+    padding: 0;
+    margin: 0;
+}
+.tooltipLi li {
+    list-style-position: inside;
+}
+.tooltipLi li::marker {
+    font-size: 20px;
+}
+.tooltipTime::marker {
+    color: #fac858;
+}
+.tooltipStage::marker {
+    color: #9fe080;
+}
+.tooltipTotal::marker {
+    color: #ee6666;
+}
+.homeCard .ant-card-body {
+    padding: 0 !important;
+}

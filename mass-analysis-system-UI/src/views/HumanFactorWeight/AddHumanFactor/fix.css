@@ -1,0 +1,7 @@
+/* 修改弹出对话框的位置 */
+.addHumanFactor {
+    top: 0.625rem;
+}
+.addHumanFactor .ant-row {
+    margin-bottom: 0.5rem;
+}
