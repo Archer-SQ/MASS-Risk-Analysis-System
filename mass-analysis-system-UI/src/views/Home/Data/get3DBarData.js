@@ -1,7 +1,7 @@
 import { incident } from "../../../service";
 import { getYears } from "../../../helpers/utils";
 
-const getBarData = async () => {
+const get3DBarData = async () => {
   let barData1 = [
     [0, 0, 0],
     [0, 1, 0],
@@ -80,4 +80,4 @@ const JudgmentData = (years, arr) => {
   }
 };
 
-export default getBarData;
+export default get3DBarData;

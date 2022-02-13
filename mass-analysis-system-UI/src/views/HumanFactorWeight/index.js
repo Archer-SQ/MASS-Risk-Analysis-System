@@ -172,7 +172,7 @@ export default defineComponent({
     ];
     // 配置分页选项
     const pagination = {
-      defaultPageSize: 10,
+      defaultPageSize: 6,
     };
     // 获取人为因素列表方法
     const getList = async () => {

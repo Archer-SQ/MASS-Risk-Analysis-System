@@ -1,6 +1,10 @@
 <template>
     <div>
-        <a-card title="事故列表" :headStyle="headStyle" class="eventList">
+        <a-card
+            title="事故列表"
+            :headStyle="headStyle"
+            class="eventList"
+        >
             <template #extra
                 ><a-input-search
                     class="eventSearch"

@@ -5,3 +5,8 @@
 .ant-btn-dashed {
     margin-left: 20px;
 }
+
+main.ant-layout-content {
+    margin: 8px 8px 0 !important;
+    overflow: hidden;
+}

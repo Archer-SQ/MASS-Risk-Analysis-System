@@ -1,7 +1,9 @@
 <template>
     <div>
-        <a-card style="width: 100%">
-            <div id="bar" style="width: 600px; height: 300px" />
+        <a-card style="width: 100%" class="homeCard">
+            <div id="bar3D" />
+            <div id="pie" />
+            <div id="bar" />
         </a-card>
     </div>
 </template>
