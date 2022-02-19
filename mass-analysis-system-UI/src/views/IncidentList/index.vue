@@ -1,10 +1,6 @@
 <template>
     <div>
-        <a-card
-            title="事故列表"
-            :headStyle="headStyle"
-            class="eventList"
-        >
+        <a-card title="事故列表" :headStyle="headStyle" class="eventList">
             <template #extra
                 ><a-input-search
                     class="eventSearch"
@@ -15,6 +11,7 @@
                     class="addEvent"
                     type="primary"
                     @click="showAddIncidentDialog = true"
+                    @mouseleave="handleMouseLeave(showAddIncidentDialog)"
                     >新增</a-button
                 ></template
             >
@@ -28,6 +25,7 @@
                 <template #serialNumber="data">
                     <a-badge
                         :count="data.record.serialNumber"
+                        :overflowCount="9999"
                         :number-style="{
                             backgroundColor: '#fff',
                             color: '#999',

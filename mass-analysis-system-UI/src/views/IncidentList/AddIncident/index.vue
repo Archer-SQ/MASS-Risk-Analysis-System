@@ -17,6 +17,7 @@
                     <a-input
                         placeholder="请输入事故名称"
                         v-model:value="addIncidentForm.name"
+                        class="inputFocus"
                     />
                 </a-form-item>
                 <a-form-item label="发生日期" name="time">
@@ -52,7 +53,9 @@
                         v-model:file-list="fileList"
                         accept=".doc,.docx,.pdf"
                     >
-                        <a-button :disabled="fileList.length === 0 ? false : true">
+                        <a-button
+                            :disabled="fileList.length === 0 ? false : true"
+                        >
                             <upload-outlined></upload-outlined>
                             点击上传事故报告
                         </a-button>

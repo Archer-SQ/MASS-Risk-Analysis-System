@@ -9,9 +9,11 @@ const router = new Router({
 })
 
 router.get('/list', async ctx => {
-    const { keyNumber = '1' } = ctx.query
-    const query = {}
-    query.controllingBehavior = keyNumber
+    const { keyNumber } = ctx.query
+    const query = keyNumber ? {} : null
+    if (keyNumber) {
+        query.controllingBehavior = keyNumber
+    }
     const list = await HumanFactor.find(query).exec()
     ctx.body = {
         data: list,

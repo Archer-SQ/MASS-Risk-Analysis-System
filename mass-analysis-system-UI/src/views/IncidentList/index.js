@@ -31,7 +31,13 @@ export default defineComponent({
 
     // 声明一个控制弹出框的响应式的变量
     const showAddIncidentDialog = ref(false);
-
+    const handleMouseLeave = (sign) => {
+      if (sign) {
+        document
+          .getElementsByClassName("inputFocus")[0]
+          .focus();
+      }
+    };
     const eventList = ref([]);
     const totalEvents = ref(0);
     const keyword = ref("");
@@ -92,7 +98,7 @@ export default defineComponent({
     // 配置分页选项
     const pagination = {
       defaultPageSize: 10,
-      total: totalEvents,
+      total: Number(totalEvents),
       showTotal: (t) => {
         return `总计:${t}条`;
       },
@@ -132,6 +138,7 @@ export default defineComponent({
       keyword,
       handleInput,
       getList,
+      handleMouseLeave,
     };
   },
 });

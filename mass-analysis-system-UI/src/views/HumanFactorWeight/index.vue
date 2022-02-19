@@ -9,14 +9,22 @@
             :active-tab-key="key"
             @tabChange="(key) => onTabChange(key)"
         >
-            <template #extra
-                ><a-button
-                    class="addHumanFactorButton"
-                    type="primary"
-                    @click="showAddHumanFactorDialog = true"
-                    >新增</a-button
-                ></template
-            >
+            <template #extra>
+                <div>
+                    <a-button
+                        class="addHumanFactorButton"
+                        type="primary"
+                        @click="showAddHumanFactorDialog = true"
+                        >新增</a-button
+                    >
+                    <a-button
+                        class="riskAssessmentButton"
+                        type="danger"
+                        @click="showRiskAssessmentDialog = true"
+                        >风险评估</a-button
+                    >
+                </div>
+            </template>
             <a-table
                 :columns="columns"
                 :data-source="humanFactorList"
@@ -97,6 +105,7 @@
             v-model:show="showAddHumanFactorDialog"
             :parentGetList="getList"
         />
+        <risk-assessment v-model:show="showRiskAssessmentDialog" />
     </div>
 </template>
 

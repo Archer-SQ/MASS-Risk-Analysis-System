@@ -1,52 +1,16 @@
-import {
-  defineComponent,
-  nextTick,
-  reactive,
-  ref,
-} from "vue";
-import { incident } from "@/service";
-import { clone } from "@/helpers/utils";
-import { message } from "ant-design-vue";
-import { UploadOutlined } from "@ant-design/icons-vue";
-import constants from "../../../../constants";
-import { trimSpace } from "../../../helpers/utils";
+import { defineComponent, ref, toRaw } from "vue";
+import { humanFactor } from "../../../service";
 
 export default defineComponent({
   props: {
     show: Boolean,
-    parentGetList: Function,
-  },
-  components: {
-    UploadOutlined,
   },
   setup(props, context) {
-    // 创建响应式的表单内容
-    const addIncidentForm = reactive({
-      name: "",
-      time: "",
-      place: null,
-      factors: [],
-      filePathName: "",
-    });
-    const fileList = ref([]);
-    // 配置发生地点选择框
-    const treeDataPlace = [
-      {
-        title: "泊位作业阶段",
-        value: "泊位作业",
-        key: "1",
-      },
-      {
-        title: "进出港航行阶段",
-        value: "进出港航行",
-        key: "2",
-      },
-      {
-        title: "沿海水域航行阶段",
-        value: "沿海水域航行",
-        key: "3",
-      },
-    ];
+    let humanFactors = ref([]);
+    let analysisArr = ref([]);
+    let tenArr = ref([]);
+    let totalWeight = ref(0);
+    let loading = ref(false);
     // 配置人为因素选择框
     const treeDataFactors = [
       {
@@ -224,94 +188,52 @@ export default defineComponent({
         ],
       },
     ];
-    // 配置表单验证规则
-    const formRef = ref();
-    const rules = {
-      name: [
-        {
-          required: true,
-          message: "请填写有效的事故名称",
-          trigger: "blur",
-        },
-        {
-          min: 3,
-          message: "字符长度必须大于3",
-          trigger: "blur",
-        },
-      ],
-      time: [
-        {
-          required: true,
-          message: "请选择事故发生日期",
-          trigger: "change",
-          type: "object",
-        },
-      ],
-      place: [
-        {
-          required: true,
-          message: "请选择航行阶段",
-          trigger: "change",
-        },
-      ],
-      factors: [
-        {
-          required: true,
-          message: "请选择人为因素",
-          trigger: "change",
-          type: "array",
-        },
-      ],
-    };
-    const handleClose = () => {
-      // 通过context.emit来修改父组件的状态
-      context.emit("update:show", false);
-      // 清空添加的表单
-      formRef.value.resetFields();
-      // 清空添加的文件
-      fileList.value = [];
-    };
-
-    const handleChange = (info) => {
-      addIncidentForm.filePathName =
-        constants.DOWNLOAD_URL + info.file.name;
-    };
-
-    const submit = () => {
-      // 提交时进行表单总体验证
-      formRef.value.validate().then(async () => {
-        // 将addIncidentForm中的时间转换为时间戳的形式
-        const form = clone(addIncidentForm);
-        form.time =
-          addIncidentForm.time.valueOf();
-        form.name = trimSpace(
-          addIncidentForm.name
-        ).trim();
-        const { data } =
-          await incident.addIncident(form);
-
-        if (data.code !== 0) {
-          message.success(data.msg);
-          handleClose();
-          props.parentGetList();
-          formRef.value.resetFields();
-          // 清空添加的文件
-          fileList.value = [];
+    const handleClick = async () => {
+      loading.value = true;
+      const { data } =
+        await humanFactor.getHumanFactor();
+      setTimeout(() => {
+        loading.value = false;
+        if (!humanFactors.length) {
+          analysisArr.value = [];
         }
-      });
+        tenArr.value = [];
+        totalWeight.value = 0;
+        toRaw(humanFactors.value).forEach((v) => {
+          data.data.forEach((item) => {
+            v === item.humanFactorName
+              ? (analysisArr.value.push(item),
+                (totalWeight.value += Number(
+                  item.generalWeight
+                )))
+              : "";
+            v === item.humanFactorName &&
+            item.generalWeightRanking <= 10
+              ? tenArr.value.push(item)
+              : "";
+          });
+        });
+      }, 1000);
+    };
+    // 关闭新增对话框
+    const handleClose = () => {
+      analysisArr.value = [];
+      humanFactors.value = [];
+      tenArr.value = [];
+      totalWeight.value = 0;
+      context.emit("update:show", false);
     };
 
     return {
       props,
       handleClose,
-      addIncidentForm,
-      submit,
-      treeDataPlace,
+      humanFactors,
       treeDataFactors,
-      rules,
-      formRef,
-      handleChange,
-      fileList,
+      handleClick,
+      analysisArr,
+      tenArr,
+      totalWeight,
+      loading,
     };
   },
 });

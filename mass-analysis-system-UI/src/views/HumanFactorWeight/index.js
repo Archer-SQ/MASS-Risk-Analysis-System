@@ -4,6 +4,7 @@ import {
   onMounted,
 } from "vue";
 import AddHumanFactor from "./AddHumanFactor/index.vue";
+import RiskAssessment from "./RiskAssessment/index.vue";
 import { humanFactor } from "@/service";
 import { message } from "ant-design-vue";
 import {
@@ -15,6 +16,7 @@ import {
 export default defineComponent({
   components: {
     AddHumanFactor,
+    RiskAssessment,
   },
   setup() {
     // 设置card的头部样式
@@ -25,6 +27,8 @@ export default defineComponent({
     };
     // 控制添加对话框弹出的状态
     const showAddHumanFactorDialog = ref(false);
+    // 控制风险评估对话框弹出的状态
+    const showRiskAssessmentDialog = ref(false);
     const tabList = [
       {
         key: "1",
@@ -196,8 +200,8 @@ export default defineComponent({
       key,
       columns,
       headStyle,
-      AddHumanFactor,
       showAddHumanFactorDialog,
+      showRiskAssessmentDialog,
       pagination,
       humanFactorList,
       getList,

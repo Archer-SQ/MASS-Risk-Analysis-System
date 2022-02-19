@@ -33,7 +33,7 @@ let bar3DConfig = (barData) => {
       },
     },
     visualMap: {
-      max: 20,
+      max: 80,
       inRange: {
         color: [
           "#313695",

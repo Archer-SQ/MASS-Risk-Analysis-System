@@ -33,7 +33,6 @@ export default defineComponent({
         bar3DEchart.setOption(
           bar3DConfig(bar3DData)
         );
-
       // 饼图
       const pieEchart = echarts.init(
         document.getElementById("pie")
@@ -41,7 +40,6 @@ export default defineComponent({
       const pieData = await getPieData();
       pieConfig &&
         pieEchart.setOption(pieConfig(pieData));
-
       // 柱状图
       const barEchart = echarts.init(
         document.getElementById("bar")
@@ -90,29 +88,26 @@ export default defineComponent({
         arrDataLen + 1 === barDataItemLen
           ? (arrDataLen = 0)
           : (arrDataLen += 1);
-        arrName =
-          echartTool.getDynamicxAxisNameData(
-            xAxisNameArr,
-            arrName
-          );
-        arrData1 =
-          echartTool.getDynamicSeriesData(
-            barData[0],
-            arrData1,
-            arrDataLen
-          );
-        arrData2 =
-          echartTool.getDynamicSeriesData(
-            barData[1],
-            arrData2,
-            arrDataLen
-          );
-        arrData3 =
-          echartTool.getDynamicSeriesData(
-            barData[2],
-            arrData3,
-            arrDataLen
-          );
+        arrName = echartTool.getDynamicData(
+          xAxisNameArr,
+          arrName,
+          arrDataLen
+        );
+        arrData1 = echartTool.getDynamicData(
+          barData[0],
+          arrData1,
+          arrDataLen
+        );
+        arrData2 = echartTool.getDynamicData(
+          barData[1],
+          arrData2,
+          arrDataLen
+        );
+        arrData3 = echartTool.getDynamicData(
+          barData[2],
+          arrData3,
+          arrDataLen
+        );
         barEchart.setOption({
           xAxis: [
             {
@@ -134,7 +129,6 @@ export default defineComponent({
       }, 2100);
       barConfig &&
         barEchart.setOption(barConfig(barData));
-
       //自适应大小
       window.onresize = function () {
         bar3DEchart.resize();
@@ -142,6 +136,5 @@ export default defineComponent({
         barEchart.resize();
       };
     };
-    return {};
   },
 });
